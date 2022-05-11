@@ -16,9 +16,13 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
     boolean gameOver= false;
     while(!input.equals("exit")&&gameOver==false)
       {
+        
+       
        gameOver = play();
         input = sc.nextLine();
       }
+     System.out.println("Player's deck: " + player);
+    System.out.println("Computer's deck: " + computer);
     gameOver();
   }
  public static boolean play()
@@ -43,12 +47,18 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
 
     else
      {
+      
        if(player.isEmpty()== true || computer.isEmpty()==true)
                 {
                   return true;
                 }
        while(p.getValue()==c.getValue())
          {
+            for(int i=0; i<limbo.size();i++)
+               {
+                 limbo.remove(i);
+                 i--;
+               }
            limbo.add(p);
            limbo.add(c);
            for(int i=0;i<3;i++)
@@ -61,6 +71,11 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
                limbo.add(player.flip());
                limbo.add(computer.flip());
              }
+
+            if(player.isEmpty()== true || computer.isEmpty()==true)
+                {
+                  return true;
+                }
            p = player.flip();
            c = computer.flip();
            
@@ -78,6 +93,11 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
              
                player.winCard(p);
                player.winCard(c);
+             for(int i=0; i<limbo.size();i++)
+               {
+                 limbo.remove(i);
+                 i--;
+               }
            }
            else if(p.getValue()<c.getValue())
            {
@@ -93,6 +113,11 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
              
                computer.winCard(p);
                computer.winCard(c); 
+             for(int i=0; i<limbo.size();i++)
+               {
+                 limbo.remove(i);
+                 i--;
+               }
            }
          }
      }   
