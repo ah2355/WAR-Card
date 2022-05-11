@@ -21,12 +21,14 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
        gameOver = play();
         input = sc.nextLine();
       }
-     System.out.println("Player's deck: " + player);
+    System.out.println("Player's deck: " + player);
     System.out.println("Computer's deck: " + computer);
     gameOver();
   }
  public static boolean play()
   {
+    int y = 0;
+    int j =0;
     System.out.println("Player played: ");
     Card p = player.flip();
     System.out.println(p);
@@ -37,12 +39,24 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
     { 
       computer.winCard(c);
       computer.winCard(p);
+      if(y==12)
+      {
+        computer.shuffle();
+        y=0;
+      }
+      y++;
     }
 
      else if(p.getValue()>c.getValue())
     {
         player.winCard(c);
       player.winCard(p);
+      if(j==12)
+      {
+        player.shuffle();
+        j=0;
+      }
+      j++;
     }
 
     else
@@ -54,6 +68,8 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
                 }
        while(p.getValue()==c.getValue())
          {
+           System.out.println();
+           System.out.println("WAR!!");
             for(int i=0; i<limbo.size();i++)
                {
                  limbo.remove(i);
@@ -78,6 +94,11 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
                 }
            p = player.flip();
            c = computer.flip();
+           System.out.println();
+           System.out.println("Player played: ");
+           System.out.println(p);
+           System.out.println("Computer played: ");
+           System.out.println(c);
            
            if(p.getValue()>c.getValue())
            {
@@ -93,6 +114,8 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
              
                player.winCard(p);
                player.winCard(c);
+             System.out.println("Player's deck: " + player);
+    System.out.println("Computer's deck: " + computer);
              for(int i=0; i<limbo.size();i++)
                {
                  limbo.remove(i);
@@ -113,6 +136,9 @@ private static ArrayList<Card> limbo = new ArrayList<Card>();
              
                computer.winCard(p);
                computer.winCard(c); 
+             System.out.println("Player's deck: " + player);
+    System.out.println("Computer's deck: " + computer);
+             
              for(int i=0; i<limbo.size();i++)
                {
                  limbo.remove(i);
