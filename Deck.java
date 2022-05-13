@@ -60,7 +60,7 @@ public class Deck
           }
           else if(i==10)
           {
-            rank = "Queen";
+            rank = "King";
             deck.add(new Card(suit, rank, 13));
           }
           else
